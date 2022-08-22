@@ -1,2 +1,3 @@
-# onit-utils
-Various data wrangling utilities for ONiT
+# ONiT Utils
+
+Various data wrangling utilities for ONiT.
