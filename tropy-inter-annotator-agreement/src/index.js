@@ -23,10 +23,10 @@ const TROPY_DATA = {
 }
 
 const distinctRecords = Array.from(new Set([
-  ...TROPY_DATA.DORIS.map(item => ({ filename: item.filename, set: item.set })),
-  ...TROPY_DATA.JACOPO.map(item => ({ filename: item.filename, set: item.set })),
-  ...TROPY_DATA.MICHELA.map(item => ({ filename: item.filename, set: item.set }))
-]));
+  ...TROPY_DATA.DORIS.map(item => JSON.stringify({ filename: item.filename, set: item.set })),
+  ...TROPY_DATA.JACOPO.map(item => JSON.stringify({ filename: item.filename, set: item.set })),
+  ...TROPY_DATA.MICHELA.map(item => JSON.stringify({ filename: item.filename, set: item.set }))
+])).map(str => JSON.parse(str));
 
 // Sort by set and filename
 distinctRecords.sort((a, b) => {
