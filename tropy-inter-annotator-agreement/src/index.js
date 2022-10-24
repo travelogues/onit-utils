@@ -2,9 +2,9 @@ import fs from 'fs';
 import Papa from 'papaparse';
 
 const TROPY_PATHS = {
-  DORIS: 'data/doris_2022-08-16.json',
-  JACOPO: 'data/jacopo_2022-08-16.json',
-  MICHELA: 'data/michela_2022-08-16.json'
+  DORIS: 'data/doris_2022-10-20.json',
+  JACOPO: 'data/jacopo_2022-10-20.json',
+  MICHELA: 'data/michela_2022-10-20.json'
 };
 
 const parse = path => 
