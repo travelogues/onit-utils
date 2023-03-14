@@ -31,7 +31,7 @@ const images = manifests.reduce((all, { barcode, path }) => {
 
       const padded_idx = idx < 9 ? `0${idx + 1}` : `${idx + 1}`;
 
-      illustrations.push({ barcode, id, label, iiif, filename: filename.replace('.jpg', `_${padded_idx}.jpg`) });
+      illustrations.push({ barcode, id, label, iiif, filename: `${barcode}_${id}_${label}_${padded_idx}.jpg` });
     })
   }
 
