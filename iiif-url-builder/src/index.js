@@ -1,7 +1,7 @@
 import fs from 'fs';
 import * as fast_csv from 'fast-csv';
 
-const BASE_FOLDER = '../../onit-iiif-harvest/data/detections/D16';
+const BASE_FOLDER = '../../onit-iiif-harvest/data/detections/D17';
 
 const manifests = fs.readdirSync(BASE_FOLDER)
   .map(folder => ({ barcode: folder , path: `${BASE_FOLDER}/${folder}/metadata.json` }))
@@ -19,7 +19,7 @@ const images = manifests.reduce((all, { barcode, path }) => {
   for (const f of files) {
     const { filename, early_printed_illustrations } = f;
 
-    for (const illustration of early_printed_illustrations) {
+    early_printed_illustrations.forEach((illustration, idx) => {
       const [ id, label ] = filename.substring(filename.lastIndexOf('/') + 1, filename.lastIndexOf('.')).split('_');
 
       const x = illustration.x0;
@@ -29,8 +29,10 @@ const images = manifests.reduce((all, { barcode, path }) => {
 
       const iiif = `https://iiif.onb.ac.at/images/ABO/${barcode}/${id}/${x},${y},${w},${h}/full/0/native.jpg`;
 
-      illustrations.push({ barcode, id, label, iiif, filename });
-    }
+      const padded_idx = idx < 9 ? `0${idx + 1}` : `${idx + 1}`;
+
+      illustrations.push({ barcode, id, label, iiif, filename: filename.replace('.jpg', `_${padded_idx}.jpg`) });
+    })
   }
 
   return illustrations.length > 0 ? [...all, ...illustrations] : all;
